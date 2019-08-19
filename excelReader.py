@@ -1,13 +1,13 @@
-from xlrd import open_workbook
-import doctor
+from doctor import Doctor
 
-def updateDb(db):
-	wb = ope_workbook('drFile.xls')
+def updateDb(db, module):
+	wb = module.open_workbook('drFile.xlsx')
 	for sheet in wb.sheets():
-		for row in range(sheet.nrows):
-			here = row[1].lower()
-			if here == 'false':
+		for i in range(sheet.nrows):
+			row = sheet.row(i)
+			if not row[1].value:
 				continue
-			name = row[0]
-			for val in row[2:]:
-				db[val] = db.get(val, []) + [doctor(name)]	
+			name = row[0].value
+			for cell in row[2:]:
+				val = cell.value
+				db[val] = db.get(val, []) + [Doctor(name)]	

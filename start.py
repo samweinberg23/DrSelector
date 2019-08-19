@@ -8,7 +8,8 @@ def main():
 		subprocess.check_call(['sudo', 'pip3', 'install', "xlrd"])
 		module = __import__("xlrd")
 	db = {}	
-	updateDb(db)		
+	updateDb(db, module)		
+	print(db)
 
 if __name__== "__main__":
 	main()

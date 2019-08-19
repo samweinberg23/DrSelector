@@ -2,6 +2,7 @@ import subprocess
 from excelReader import updateDb
 from time import sleep
 from threading import Thread
+from case_manager import CaseManager
 
 def lifespan():
 	try:
@@ -9,7 +10,7 @@ def lifespan():
 	except ImportError:
 		subprocess.check_call(['sudo', 'pip3', 'install', "xlrd"])
 		module = __import__("xlrd")
-	db = {}	
+	db = CaseManager()
 	updateDb(db, module)		
 	print(db)
 

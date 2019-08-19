@@ -1,4 +1,4 @@
-from doctor import Doctor
+import case_manager
 
 def updateDb(db, module):
 	wb = module.open_workbook('drFile.xlsx')
@@ -10,4 +10,4 @@ def updateDb(db, module):
 			name = row[0].value
 			for cell in row[2:]:
 				val = cell.value
-				db[val] = db.get(val, []) + [Doctor(name)]	
+				db.addDoctor(val, name)	
